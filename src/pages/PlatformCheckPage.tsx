@@ -12,6 +12,10 @@ const PLATFORMS: { id: Platform; label: string; icon: string }[] = [
   { id: 'rubika', label: 'روبیکا', icon: '🟣' },
 ];
 
+// Simulated probability that a phone number has an account on a given platform.
+// Replace with a real API call per platform in production.
+const SIMULATED_ACCOUNT_PROBABILITY = 0.7;
+
 export default function PlatformCheckPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -49,7 +53,7 @@ export default function PlatformCheckPage() {
     for (const contactId of selected) {
       for (const platform of PLATFORMS) {
         // NOTE: Simulation only — replace with actual platform API calls in production
-        const hasAccount = Math.random() > 0.3;
+        const hasAccount = Math.random() < SIMULATED_ACCOUNT_PROBABILITY;
         const lastOnline = hasAccount
           ? new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000).toISOString()
           : null;

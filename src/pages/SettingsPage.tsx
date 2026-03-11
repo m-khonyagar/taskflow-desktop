@@ -14,8 +14,9 @@ export default function SettingsPage() {
   ];
 
   function save() {
-    // NOTE: Placeholder — platform tokens are not yet persisted.
-    // In production, store encrypted tokens via Tauri's secure store or database.
+    // TODO: Persist platform API tokens securely using tauri-plugin-stronghold or
+    // tauri-plugin-store. Tokens should be encrypted at rest and never stored in
+    // plain text or the SQLite database.
     addNotification('success', 'تنظیمات ذخیره شد');
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
